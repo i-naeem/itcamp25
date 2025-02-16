@@ -2,9 +2,10 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const configs = require('./lib/configs');
-const db = require('./lib/db');
 const express = require('express');
 const logger = require('morgan');
+const db = require('./lib/db');
+const cors = require('cors');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
@@ -15,6 +16,8 @@ const jokesRouter = require('./routes/jokes.route.js');
 })();
 
 const app = express();
+
+app.use(cors({ origin: configs.CORS_ORIGIN, credentials: configs.CORS_CREDENTIALS }));
 
 app.use(logger('dev'));
 app.use(express.json());
