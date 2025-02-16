@@ -9,10 +9,20 @@ function App() {
 
   if (error) return 'An error has occurred: ' + error.message;
   return (
-    <main>
-      <h1>Random Joke</h1>
-      <Card {...data} />
-    </main>
+    <div className='app'>
+      <header>
+        <h1>IT Camp 2025 Workshop - 7 </h1>
+      </header>
+      <main>
+        <section>
+          <Card {...data} />
+        </section>
+        <section>
+          <button>Next</button>
+        </section>
+      </main>
+      <footer>Lorem ipsum dolor &copy; 2025</footer>
+    </div>
   );
 }
 

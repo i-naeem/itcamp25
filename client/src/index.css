@@ -1,0 +1,41 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --header-size: 60px;
+  --footer-size: 60px;
+  --clr-primary: #f4f4f4;
+  --clr-secondary: #333;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  min-height: var(--header-size);
+}
+
+footer {
+  min-height: var(--footer-size);
+}
+
+header,
+footer,
+main {
+  display: flex;
+  align-items: center;
+}
+
+main {
+  min-height: calc(100vh - var(--header-size) - var(--footer-size));
+  justify-content: center;
+  flex-direction: column;
+}
