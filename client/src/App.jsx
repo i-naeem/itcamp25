@@ -17,9 +17,6 @@ function App() {
         <section>
           <Card {...data} />
         </section>
-        <section>
-          <button>Next</button>
-        </section>
       </main>
       <footer>Lorem ipsum dolor &copy; 2025</footer>
     </div>

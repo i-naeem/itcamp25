@@ -7,11 +7,16 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  background-color: rgb(238, 238, 137);
+}
+
 :root {
-  --header-size: 60px;
-  --footer-size: 60px;
   --clr-primary: #f4f4f4;
   --clr-secondary: #333;
+  --header-size: 60px;
+  --footer-size: 60px;
+  --paper-shadow: 5px 5px 0 0 var(--clr-secondary);
 }
 
 .app {
@@ -25,6 +30,8 @@ header {
 
 footer {
   min-height: var(--footer-size);
+  display: flex;
+  justify-content: center;
 }
 
 header,
@@ -38,4 +45,100 @@ main {
   min-height: calc(100vh - var(--header-size) - var(--footer-size));
   justify-content: center;
   flex-direction: column;
+}
+
+.card {
+  background-color: var(--clr-primary);
+  box-shadow: var(--paper-shadow);
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 250px;
+  max-width: 800px;
+  min-width: 800px;
+  padding: 20px;
+  display: flex;
+  width: 100%;
+}
+
+.card-body {
+  letter-spacing: -0.0225rem;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.card-body > * {
+  margin-bottom: 15px;
+}
+
+.card-footer {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  flex-grow: 1;
+}
+
+/* BUTTON STYLES */
+.btn {
+  border: 1px solid var(--clr-secondary);
+  justify-content: center;
+  font-family: system-ui;
+  transition: 100ms ease;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  gap: 6px;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  background-color: #ddd8d8;
+}
+
+.btn:active {
+  background-color: #bdb8b8;
+  transition: 10ms ease;
+}
+
+.btn:focus-visible {
+  outline: 0;
+}
+
+.btn:focus-visible::after {
+  left: 50%;
+  position: absolute;
+  top: calc(100% + 12px);
+  content: '\21E7';
+  transform: translateX(-50%);
+  animation: float 0.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-50%) translatey(0px);
+  }
+  50% {
+    transform: translateX(-50%) translatey(-6px);
+  }
+  100% {
+    transform: translateX(-50%) translatey(0px);
+  }
+}
+
+.next-button {
+  flex-grow: 3;
 }

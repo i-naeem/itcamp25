@@ -1,16 +1,19 @@
 export default function Card(props) {
   return (
-    <article>
-      <section>
+    <article className='card'>
+      <section className='card-body'>
         <h1>{props.question}</h1>
         <p>{props.answer}</p>
       </section>
-      <section>
+      <section className='card-footer'>
         {props.votes.map((vote, idx) => (
-          <p key={idx}>
-            {vote.label}:{vote.value}
-          </p>
+          <button key={idx} className='btn'>
+            <span class='emoji'>{vote.label}</span>
+            <span class='count'>{vote.value}</span>
+          </button>
         ))}
+        <div className='separator'></div>
+        <button className='next-button btn'>Next</button>
       </section>
     </article>
   );
