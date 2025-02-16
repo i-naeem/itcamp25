@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "seed": "node ./lib/seed.js",
     "dev": "SET DEBUG=server:* & nodemon ./bin/www"
   },
   "dependencies": {
