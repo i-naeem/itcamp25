@@ -2,12 +2,17 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const configs = require('./lib/configs');
+const db = require('./lib/db');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
 const jokesRouter = require('./routes/jokes.route.js');
+
+(async () => {
+  await db.connect(configs.MONGODB_URI);
+})();
 
 const app = express();
 
