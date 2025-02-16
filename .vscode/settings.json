@@ -11,5 +11,6 @@
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
   "prettier.semi": true,
-  "editor.rulers": [120]
+  "editor.rulers": [120],
+  "cSpell.words": ["itcamp"]
 }
