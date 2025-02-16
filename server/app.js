@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 const cookieParser = require('cookie-parser');
+const configs = require('./lib/configs');
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
