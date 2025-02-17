@@ -69,7 +69,7 @@ router.get(
 );
 
 /**
- * POST /:id - Vote on a joke
+ * POST /:id - Vote on a joke (Users can vote for multiple reactions, but only once per reaction)
  */
 router.post(
   '/:id',
@@ -80,32 +80,20 @@ router.post(
 
     try {
       const joke = await getJokeById(id, res);
-      if (!joke) return; // Exit if joke is not found
+      if (!joke) return;
 
       if (!joke.availableVotes.includes(value)) {
         return res.status(400).json({ message: `Invalid vote type: ${value}` });
       }
 
-      // Handle the vote logic
-      const existingVoteIndex = joke.votesList.findIndex((vote) => vote.ipAddress === userIp);
+      const userVotes = joke.votesList.filter((vote) => vote.ipAddress === userIp);
+      const hasVotedForThisType = userVotes.some((vote) => vote.type === value);
 
-      if (existingVoteIndex !== -1) {
-        const existingVote = joke.votesList[existingVoteIndex];
+      if (hasVotedForThisType) {
+        joke.votesList = joke.votesList.filter((vote) => !(vote.ipAddress === userIp && vote.type === value));
 
-        if (existingVote.type === value) {
-          joke.votesList.splice(existingVoteIndex, 1);
-          const voteToDecrement = joke.votes.find((vote) => vote.label === value);
-          if (voteToDecrement) voteToDecrement.value -= 1;
-        } else {
-          const oldVoteType = existingVote.type;
-          joke.votesList[existingVoteIndex].type = value;
-          joke.votesList[existingVoteIndex].votedAt = new Date();
-
-          const oldVote = joke.votes.find((vote) => vote.label === oldVoteType);
-          const newVote = joke.votes.find((vote) => vote.label === value);
-          if (oldVote) oldVote.value -= 1;
-          if (newVote) newVote.value += 1;
-        }
+        const voteToDecrement = joke.votes.find((vote) => vote.label === value);
+        if (voteToDecrement) voteToDecrement.value -= 1;
       } else {
         joke.votesList.push({ ipAddress: userIp, type: value });
         const newVote = joke.votes.find((vote) => vote.label === value);

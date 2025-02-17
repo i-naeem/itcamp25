@@ -13,8 +13,9 @@ POST http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
 content-type: application/json
 
 {
-  "value": "like"
+  "value": "love"
 }
+
 ###
 
 # Test invalid vote action
@@ -24,9 +25,8 @@ content-type: application/json
 {
   "value": "upvote"
 }
+
 ###
-
-
 
 # Test the "PUT /api/joke/:id" Route - Updating joke content
 PUT http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
