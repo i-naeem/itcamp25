@@ -27,3 +27,42 @@ content-type: application/json
 ###
 
 
+
+# Test the "PUT /api/joke/:id" Route - Updating joke content
+PUT http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+content-type: application/json
+
+{
+  "question": "Why did the chicken join a band?",
+  "answer": "Because it had the drumsticks!"
+}
+###
+
+# Test updating only the question
+PUT http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+content-type: application/json
+
+{
+  "question": "Why don't skeletons fight each other?"
+}
+###
+
+# Test updating only the answer
+PUT http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+content-type: application/json
+
+{
+  "answer": "Because they don't have the guts!"
+}
+###
+
+# Test invalid update (no question or answer provided)
+PUT http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+content-type: application/json
+
+{
+  "answer": "a",
+  "question": ""
+}
+###
+

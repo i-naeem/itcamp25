@@ -123,4 +123,33 @@ router.post(
   formatJokeResponse,
 );
 
+/**
+ * PUT /:id - Update a joke's question or answer
+ */
+router.put(
+  '/:id',
+  async (req, res, next) => {
+    const { question, answer } = req.body;
+
+    if (!question && !answer) {
+      return res.status(400).json({ message: 'At least one field (question or answer) is required' });
+    }
+
+    try {
+      const joke = await getJokeById(req.params.id, res);
+      if (!joke) return; // Exit if joke is not found
+
+      if (question) joke.question = question;
+      if (answer) joke.answer = answer;
+
+      await joke.save();
+      res.locals.joke = joke;
+      next();
+    } catch (error) {
+      next(error);
+    }
+  },
+  formatJokeResponse,
+);
+
 module.exports = router;
