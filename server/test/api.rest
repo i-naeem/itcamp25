@@ -1,19 +1,29 @@
-# test vote route
+# Test the "GET /api/joke" Route
 GET http://localhost:3000/api/joke
+###
 
+# Test the "GET /api/joke/:id" Route
+GET http://localhost:3000/api/joke/67b38a49aa78fdd528177f45
+###
 
-### 
-
-# test vote route
-GET http://localhost:3000/api/joke/67b2dff337a02041f3bdddb8
-
-### 
-
-# test vote route
-POST http://localhost:3000/api/joke/67b2dff337a02041f3bdddb8 HTTP/1.1
+# Test the "POST /api/joke/:id" Route - Voting on a joke
+# Sending the like again if you have already liked it will remove the like
+# If you have like a joke and try to cast `love` vote the like vote will be removed and the love vote will be casted.
+POST http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
 content-type: application/json
 
 {
-  "action": "increment",
-  "value": "😂"
+  "value": "like"
 }
+###
+
+# Test invalid vote action
+POST http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+content-type: application/json
+
+{
+  "value": "upvote"
+}
+###
+
+
