@@ -1,0 +1,19 @@
+# test vote route
+GET http://localhost:3000/api/joke
+
+
+### 
+
+# test vote route
+GET http://localhost:3000/api/joke/67b2dff337a02041f3bdddb8
+
+### 
+
+# test vote route
+POST http://localhost:3000/api/joke/67b2dff337a02041f3bdddb8 HTTP/1.1
+content-type: application/json
+
+{
+  "action": "increment",
+  "value": "😂"
+}
