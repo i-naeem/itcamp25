@@ -1,10 +1,14 @@
 import api from '../api/api';
-import { useMutation } from '@tanstack/react-query';
 import { Link } from 'react-router';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 export default function Card(props) {
+  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: api.voteJoke,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['joke-by-id'] });
+    },
   });
 
   return (
@@ -29,7 +33,7 @@ export default function Card(props) {
           </button>
         ))}
         <div className='separator'></div>
-        <Link  to='/' className='next-button btn'>
+        <Link to='/' className='next-button btn'>
           Next
         </Link>
       </section>
