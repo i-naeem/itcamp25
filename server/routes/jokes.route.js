@@ -31,6 +31,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
   const { action, value } = req.body;
+  console.log(req.body);
   const { id } = req.params;
 
   try {
