@@ -1,5 +1,6 @@
 import api from '../api/api';
 import { useMutation } from '@tanstack/react-query';
+import { Link } from 'react-router';
 
 export default function Card(props) {
   const mutation = useMutation({
@@ -20,7 +21,7 @@ export default function Card(props) {
             onClick={() => {
               mutation.mutate({
                 id: props._id,
-                content: { action: "increment", value: vote.label },
+                content: { action: 'increment', value: vote.label },
               });
             }}>
             <span className='emoji'>{vote.label}</span>
@@ -28,7 +29,9 @@ export default function Card(props) {
           </button>
         ))}
         <div className='separator'></div>
-        <button className='next-button btn'>Next</button>
+        <Link  to='/' className='next-button btn'>
+          Next
+        </Link>
       </section>
     </article>
   );
