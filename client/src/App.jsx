@@ -1,13 +1,9 @@
-import api from './api/api';
-import Card from './components/Card';
-import { useQuery } from '@tanstack/react-query';
+import Home from './routes/Home';
+import Joke from './routes/Joke';
+import { Route, Routes } from 'react-router';
 
 function App() {
-  const { isPending, error, data } = useQuery({ queryKey: ['randomJoke'], queryFn: api.getRandomJoke });
 
-  if (isPending) return 'Loading...';
-
-  if (error) return 'An error has occurred: ' + error.message;
   return (
     <div className='app'>
       <header>
@@ -15,7 +11,10 @@ function App() {
       </header>
       <main>
         <section>
-          <Card {...data} />
+          <Routes>
+          <Route path="/"  element={<Home />} />
+          <Route path="/:id" element={<Joke />} />
+          </Routes>
         </section>
       </main>
       <footer>Lorem ipsum dolor &copy; 2025</footer>

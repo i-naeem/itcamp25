@@ -3,6 +3,11 @@ const getRandomJoke = async () => {
   return await response.json();
 };
 
+const getJokeById = async (id) => {
+  let response = await fetch('http://localhost:3000/api/joke/' + id);
+  return await response.json();
+};
+
 const voteJoke = async (data) => {
   try {
     let { id, content } = data;
@@ -24,4 +29,4 @@ const voteJoke = async (data) => {
   }
 };
 
-export default { getRandomJoke, voteJoke };
+export default { getRandomJoke, getJokeById, voteJoke };

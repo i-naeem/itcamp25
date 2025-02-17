@@ -4,7 +4,6 @@ import { useMutation } from '@tanstack/react-query';
 export default function Card(props) {
   const mutation = useMutation({
     mutationFn: api.voteJoke,
-    onSuccess: () => {},
   });
 
   return (
