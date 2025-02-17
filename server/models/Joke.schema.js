@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const voteSchema = new mongoose.Schema({
   value: { type: Number, required: true },
   label: { type: String, required: true },
-  active: { type: Boolean, required: true, default: false }, 
+  active: { type: Boolean, required: true, default: false },
 });
 
 const voterSchema = new mongoose.Schema({
