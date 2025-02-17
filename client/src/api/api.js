@@ -1,28 +1,18 @@
-const getRandomJoke = async () => {
-  let response = await fetch('http://localhost:3000/api/joke');
-  return await response.json();
-};
+import axios from 'axios';
 
-const getJokeById = async (id) => {
-  let response = await fetch('http://localhost:3000/api/joke/' + id);
-  return await response.json();
-};
+const API_BASE_URL = 'http://localhost:3000/api/joke';
 
-const voteJoke = async (data) => {
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: { 'Content-Type': 'application/json' },
+});
+
+export const getRandomJoke = () => api.get('/').then((res) => res.data);
+export const getJokeById = (id) => api.get(`/${id}`).then((res) => res.data);
+export const voteJoke = async ({ id, content }) => {
   try {
-    let { id, content } = data;
-
-    let response = await fetch(`http://localhost:3000/api/joke/${id}`, {
-      method: 'POST',
-      body: JSON.stringify( content ),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    return await response.json();
+    const response = await api.post(`/${id}`, content);
+    return response.data;
   } catch (error) {
     console.error('Error voting joke:', error);
     return { success: false, error: error.message };
