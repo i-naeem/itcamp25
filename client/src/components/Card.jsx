@@ -21,7 +21,7 @@ export default function Card(props) {
         {props.votes.map((vote, idx) => (
           <button
             key={idx}
-            className='btn'
+            className={`btn ${vote.active ? 'active' : ''}`}
             onClick={() => {
               mutation.mutate({
                 id: props._id,

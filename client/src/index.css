@@ -116,6 +116,11 @@ main {
   transition: 10ms ease;
 }
 
+.btn.active { 
+  background-color: #bdb8b8;
+  transition: 10ms ease;
+}
+
 .btn:focus-visible {
   outline: 0;
 }
