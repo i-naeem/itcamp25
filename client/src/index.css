@@ -32,7 +32,7 @@
   --header-height: 60px;
   --footer-height: 60px;
   --max-card-width: 800px;
-  --min-card-width: 600px;
+  --min-card-width: 800px;
 }
 
 /* Base Styles */
@@ -107,7 +107,7 @@ main {
 /* Card Component */
 .card {
   background-color: var(--clr-primary);
-  box-shadow: 5px 5px 15px var(--clr-shadow);
+  box-shadow: 5px 5px 0px 1px var(--clr-shadow);
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -317,6 +317,7 @@ footer {
   :root {
     --fs-lg: 1.25rem;
     --fs-xl: 1.5rem;
+    --max-card-width: 100%;
   }
 
   .separator {
