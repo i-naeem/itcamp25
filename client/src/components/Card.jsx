@@ -2,8 +2,9 @@ import api from '../api/api';
 import { Link } from 'react-router';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 
-export default function Card(props) {
-  const queryClient = useQueryClient()
+export default function Card({ _id, question, answer, votes }) {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: api.voteJoke,
     onSuccess: () => {
@@ -11,23 +12,19 @@ export default function Card(props) {
     },
   });
 
+  const handleVote = (vote) => {
+    mutation.mutate({ id: _id, content: { action: 'increment', value: vote.label } });
+  };
+
   return (
     <article className='card'>
       <section className='card-body'>
-        <h1>{props.question}</h1>
-        <p>{props.answer}</p>
+        <h1>{question}</h1>
+        <p>{answer}</p>
       </section>
       <section className='card-footer'>
-        {props.votes.map((vote, idx) => (
-          <button
-            key={idx}
-            className={`btn ${vote.active ? 'active' : ''}`}
-            onClick={() => {
-              mutation.mutate({
-                id: props._id,
-                content: { action: 'increment', value: vote.label },
-              });
-            }}>
+        {votes.map((vote, idx) => (
+          <button key={idx} className={`btn ${vote.active ? 'active' : ''}`} onClick={() => handleVote(vote)}>
             <span className='emoji'>{vote.label}</span>
             <span className='count'>{vote.value}</span>
           </button>
