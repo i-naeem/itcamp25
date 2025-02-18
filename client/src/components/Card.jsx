@@ -39,12 +39,15 @@ export default function Card({ _id, question, answer, votes }) {
         <p>{answer}</p>
       </section>
       <section className='card-footer'>
-        {votes.map((vote, idx) => (
-          <button key={idx} className={`btn ${vote.active ? 'active' : ''}`} onClick={() => handleVote(vote)}>
-            <span className='emoji'>{EMOJIS_FOR_VOTES[vote.label]}</span>
-            <span className='count'>{vote.value}</span>
-          </button>
-        ))}
+        {votes.map((vote, idx) => {
+          let activeClass = vote.active ? `active ${vote.label}` : vote.label;
+          return (
+            <button key={idx} className={`btn ${activeClass}`} onClick={() => handleVote(vote)}>
+              <span className='emoji'>{EMOJIS_FOR_VOTES[vote.label]}</span>
+              <span className='count'>{vote.value}</span>
+            </button>
+          );
+        })}
         <div className='separator'></div>
         <button onClick={handleDelete} className='btn delete-button'>
           Delete
