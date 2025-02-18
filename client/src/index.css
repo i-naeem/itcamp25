@@ -1,72 +1,125 @@
+/* Global Reset & Base Styles */
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background-color: rgb(238, 238, 137);
 }
 
 :root {
-  --clr-primary: #f4f4f4;
-  --clr-secondary: #333;
-  --header-size: 60px;
-  --footer-size: 60px;
-  --paper-shadow: 5px 5px 0 0 var(--clr-secondary);
+  /* Color Palette */
+  --clr-bg: #f2f2f2;
+  --clr-primary: #ffffff;
+  --clr-secondary: #333333;
+  --clr-accent: #1e90ff;
+  --clr-muted: #cccccc;
+  --clr-header-bg: #1e1e1e;
+  --clr-footer-bg: #1e1e1e;
+  --clr-btn-bg: #f4f4f4;
+  --clr-btn-hover: #e2e2e2;
+  --clr-shadow: rgba(51, 51, 51, 0.2);
+
+  /* Font & Sizing */
+  --ff-primary: 'Arial', Helvetica, sans-serif;
+  --ff-secondary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --fs-base: 16px;
+  --fs-lg: 2rem;
+  --spacing: 1rem;
+
+  /* Layout */
+  --header-height: 60px;
+  --footer-height: 60px;
+  --max-card-width: 800px;
+  --min-card-width: 600px;
 }
 
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-base);
+  background-color: var(--clr-bg);
+  line-height: 1.5;
+  color: var(--clr-secondary);
+}
+
+/* App Layout */
 .app {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-header {
-  min-height: var(--header-size);
-  padding: 10px;
-}
-
-footer {
-  min-height: var(--footer-size);
+/* Header */
+.site-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing) 2rem;
+  background-color: var(--clr-header-bg);
+  color: #fff;
 }
 
-header,
-footer,
-main {
+.site-header .container {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
+.site-header h1 {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin-left: var(--spacing);
+}
+
+/* GitHub Button */
+.github-button {
+  background-color: #24292e;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.github-button:hover {
+  background-color: #0366d6;
+}
+
+/* Main Content */
 main {
-  min-height: calc(100vh - var(--header-size) - var(--footer-size) - 20px);
-  justify-content: center;
+  flex: 1;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing);
 }
 
+/* Card Component */
 .card {
   background-color: var(--clr-primary);
-  box-shadow: var(--paper-shadow);
-  justify-content: space-between;
-  flex-direction: column;
-  min-height: 250px;
-  max-width: 800px;
-  min-width: 600px;
+  box-shadow: 5px 5px 15px var(--clr-shadow);
+  border-radius: 8px;
   padding: 20px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  max-width: var(--max-card-width);
+  min-width: var(--min-card-width);
+  margin: var(--spacing) 0;
 }
 
 .card-body {
+  font-size: var(--fs-lg);
   letter-spacing: -0.0225rem;
-  font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 2rem;
-  margin: 0;
 }
 
 .card-body > * {
@@ -74,80 +127,87 @@ main {
   padding: 15px;
 }
 
+/* Card Footer */
 .card-footer {
-  gap: 10px;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .separator {
   flex-grow: 1;
 }
 
-/* BUTTON STYLES */
+/* Button Styles */
 .btn {
-  border: 1px solid var(--clr-secondary);
-  justify-content: center;
-  font-family: system-ui;
-  transition: 100ms ease;
   display: inline-flex;
   align-items: center;
-  position: relative;
-  padding: 14px 22px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
+  justify-content: center;
   gap: 6px;
+  padding: 14px 22px;
+  border: 1px solid var(--clr-secondary);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--ff-secondary);
+  font-weight: 600;
   text-decoration: none;
   color: var(--clr-secondary);
-}
-
-.btn svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+  background-color: var(--clr-btn-bg);
+  cursor: pointer;
+  transition: background 0.1s ease;
 }
 
 .btn:hover {
-  background-color: #ddd8d8;
+  background-color: var(--clr-btn-hover);
 }
 
 .btn:active {
   background-color: #bdb8b8;
-  transition: 10ms ease;
-}
-
-.btn.active {
-  background-color: #bdb8b8;
-  transition: 10ms ease;
 }
 
 .btn:focus-visible {
-  outline: 0;
+  outline: none;
 }
 
 .btn:focus-visible::after {
-  left: 50%;
+  content: '\21E7';
   position: absolute;
   top: calc(100% + 12px);
-  content: '\21E7';
+  left: 50%;
   transform: translateX(-50%);
   animation: float 0.5s ease-in-out infinite;
 }
 
+/* Floating Animation for Focus */
 @keyframes float {
   0% {
-    transform: translateX(-50%) translatey(0px);
+    transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translatey(-6px);
+    transform: translateX(-50%) translateY(-6px);
   }
   100% {
-    transform: translateX(-50%) translatey(0px);
+    transform: translateX(-50%) translateY(0);
   }
 }
 
+/* Editable Inputs */
+input.editable,
+textarea.editable {
+  width: 100%;
+  font-size: 32px;
+  padding: 10px;
+  border: 1px solid var(--clr-muted);
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+input.editable:focus,
+textarea.editable:focus {
+  border-color: var(--clr-accent);
+}
+
+/* Specific Weight for Input/Textarea */
 input.editable {
   font-weight: 700;
 }
@@ -156,12 +216,7 @@ textarea.editable {
   font-weight: 400;
 }
 
-.editable {
-  display: flex;
-  width: 100%;
-  font-size: 32px;
-}
-
+/* Save Button Special Style */
 .save-button {
   background-color: #b9f0b7;
 }
@@ -172,41 +227,33 @@ textarea.editable {
 
 .save-button:active {
   background-color: #7cf778;
-  transition: 10ms ease;
 }
 
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #1e1e1e;
-  color: white;
-}
-
-.container {
+/* Footer */
+footer {
+  height: var(--footer-height);
+  background-color: var(--clr-footer-bg);
   display: flex;
   align-items: center;
-  width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  color: #fff;
+  padding: var(--spacing);
 }
 
-.subtitle {
-  margin-left: 1rem;
-  font-size: 1rem;
-  color: #ccc;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    min-width: 90%;
+  }
 
-.github-button {
-  background-color: #24292e;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
+  .site-header,
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
 
-.github-button:hover {
-  background-color: #0366d6;
+  .site-header .container {
+    flex-direction: column;
+    gap: var(--spacing);
+  }
 }
