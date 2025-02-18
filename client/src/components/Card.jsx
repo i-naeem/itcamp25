@@ -1,4 +1,5 @@
 import api from '../api/api';
+import EMOJIS_FOR_VOTES from './constants';
 import { Link, useNavigate } from 'react-router';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 
@@ -40,7 +41,7 @@ export default function Card({ _id, question, answer, votes }) {
       <section className='card-footer'>
         {votes.map((vote, idx) => (
           <button key={idx} className={`btn ${vote.active ? 'active' : ''}`} onClick={() => handleVote(vote)}>
-            <span className='emoji'>{vote.label}</span>
+            <span className='emoji'>{EMOJIS_FOR_VOTES[vote.label]}</span>
             <span className='count'>{vote.value}</span>
           </button>
         ))}
