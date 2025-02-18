@@ -142,14 +142,25 @@ router.put(
 
 /**
  * DELETE /:id - Delete a joke by its ID
+ *
+ * This route will only perform an actual deletion if the total number of jokes is greater than 10.
+ * If there are 10 or fewer jokes, the response will simulate a deletion by returning a success message
+ * without removing the joke. This is to ensure that a minimum number of jokes (10) is maintained in the database.
  */
 router.delete('/:id', async (req, res, next) => {
   try {
+    const totalJokes = await Joke.countDocuments();
     const joke = await getJokeById(req.params.id, res);
     if (!joke) return;
 
-    await joke.deleteOne();
-    res.status(200).json({ message: 'Joke deleted successfully' });
+    if (totalJokes > 10) {
+      await joke.deleteOne();
+      res.status(200).json({ message: 'Joke deleted successfully' });
+    } else {
+      res.status(200).json({
+        message: 'Joke deletion simulated. Joke was not removed to maintain a minimum count of 10 jokes.',
+      });
+    }
   } catch (error) {
     next(error);
   }
