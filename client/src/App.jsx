@@ -17,7 +17,17 @@ function App() {
           </Routes>
         </section>
       </main>
-      <footer>Lorem ipsum dolor &copy; 2025</footer>
+      <footer className='site-footer'>
+        <div className='container'>
+          <p>
+            Special thanks to{' '}
+            <a href='https://www.dataart.com/' target='_blank' rel='noopener noreferrer'>
+              DataArt IT
+            </a>{' '}
+            for hosting the workshop and guiding me.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
