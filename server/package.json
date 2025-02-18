@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "seed": "node ./lib/seed.js",
+    "seed-p": "node ./lib/seed-placeholders.js",
+    "seed-t": "node ./lib/seed-teehee.js",
     "dev": "SET DEBUG=server:* & nodemon ./bin/www"
   },
   "dependencies": {
