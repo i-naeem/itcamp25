@@ -9,6 +9,8 @@ const api = axios.create({
 
 export const getRandomJoke = () => api.get('/').then((res) => res.data);
 export const getJokeById = (id) => api.get(`/${id}`).then((res) => res.data);
+export const deleteJokeById = ({ id }) => api.delete(`/${id}`).then((res) => res.data);
+
 export const voteJoke = async ({ id, content }) => {
   try {
     const response = await api.post(`/${id}`, content);
@@ -29,4 +31,4 @@ export const updateJoke = async ({ id, content }) => {
   }
 };
 
-export default { getRandomJoke, getJokeById, voteJoke, updateJoke };
+export default { getRandomJoke, getJokeById, voteJoke, updateJoke, deleteJokeById };

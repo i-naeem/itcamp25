@@ -1,19 +1,34 @@
 import api from '../api/api';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 export default function Card({ _id, question, answer, votes }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-  const mutation = useMutation({
+  const voteMutation = useMutation({
     mutationFn: api.voteJoke,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['joke', _id] });
     },
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: api.deleteJokeById,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['jokes'] });
+    },
+  });
+
   const handleVote = (vote) => {
-    mutation.mutate({ id: _id, content: { action: 'increment', value: vote.label } });
+    voteMutation.mutate({ id: _id, content: { action: 'increment', value: vote.label } });
+  };
+
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this joke?')) {
+      deleteMutation.mutate({ id: _id });
+      navigate('/');
+    }
   };
 
   return (
@@ -30,9 +45,9 @@ export default function Card({ _id, question, answer, votes }) {
           </button>
         ))}
         <div className='separator'></div>
-        <Link to={`/edit/${_id}`} className='btn'>
+        <button onClick={handleDelete} className='btn delete-button'>
           Delete
-        </Link>
+        </button>
         <Link to={`/edit/${_id}`} className='btn'>
           Edit
         </Link>

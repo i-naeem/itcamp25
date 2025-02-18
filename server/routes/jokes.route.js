@@ -140,4 +140,19 @@ router.put(
   formatJokeResponse,
 );
 
+/**
+ * DELETE /:id - Delete a joke by its ID
+ */
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const joke = await getJokeById(req.params.id, res);
+    if (!joke) return;
+
+    await joke.deleteOne();
+    res.status(200).json({ message: 'Joke deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

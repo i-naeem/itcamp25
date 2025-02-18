@@ -66,3 +66,7 @@ content-type: application/json
 }
 ###
 
+# Test to delete a vote
+DELETE  http://localhost:3000/api/joke/67b38a49aa78fdd528177f45 HTTP/1.1
+
+###
