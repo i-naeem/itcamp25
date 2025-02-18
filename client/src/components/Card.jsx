@@ -8,7 +8,7 @@ export default function Card({ _id, question, answer, votes }) {
   const mutation = useMutation({
     mutationFn: api.voteJoke,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['joke-by-id'] });
+      queryClient.invalidateQueries({ queryKey: ['joke', _id] });
     },
   });
 
