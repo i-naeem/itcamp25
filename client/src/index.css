@@ -54,7 +54,7 @@ main {
   flex-direction: column;
   min-height: 250px;
   max-width: 800px;
-  min-width: 800px;
+  min-width: 600px;
   padding: 20px;
   display: flex;
   width: 100%;
@@ -69,7 +69,8 @@ main {
 }
 
 .card-body > * {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  padding: 15px;
 }
 
 .card-footer {
@@ -98,7 +99,7 @@ main {
   font-size: 1rem;
   gap: 6px;
   text-decoration: none;
-  color: var(--clr-secondary)
+  color: var(--clr-secondary);
 }
 
 .btn svg {
@@ -116,7 +117,7 @@ main {
   transition: 10ms ease;
 }
 
-.btn.active { 
+.btn.active {
   background-color: #bdb8b8;
   transition: 10ms ease;
 }
@@ -146,6 +147,29 @@ main {
   }
 }
 
-.next-button {
-  flex-grow: 3;
+input.editable {
+  font-weight: 700;
+}
+
+textarea.editable {
+  font-weight: 400;
+}
+
+.editable {
+  display: flex;
+  width: 100%;
+  font-size: 32px;
+}
+
+.save-button {
+  background-color: #b9f0b7;
+}
+
+.save-button:hover {
+  background-color: #87f583d3;
+}
+
+.save-button:active {
+  background-color: #7cf778;
+  transition: 10ms ease;
 }

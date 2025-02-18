@@ -19,4 +19,14 @@ export const voteJoke = async ({ id, content }) => {
   }
 };
 
-export default { getRandomJoke, getJokeById, voteJoke };
+export const updateJoke = async ({ id, content }) => {
+  try {
+    const response = await api.put(`/${id}`, content);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating joke:', error);
+    throw new Error(error.response?.data?.message || 'Failed to update joke');
+  }
+};
+
+export default { getRandomJoke, getJokeById, voteJoke, updateJoke };

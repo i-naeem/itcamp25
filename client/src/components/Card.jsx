@@ -30,6 +30,12 @@ export default function Card({ _id, question, answer, votes }) {
           </button>
         ))}
         <div className='separator'></div>
+        <Link to={`/edit/${_id}`} className='btn'>
+          Delete
+        </Link>
+        <Link to={`/edit/${_id}`} className='btn'>
+          Edit
+        </Link>
         <Link to='/' className='next-button btn'>
           Next
         </Link>
