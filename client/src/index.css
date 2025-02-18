@@ -26,6 +26,7 @@ body {
 
 header {
   min-height: var(--header-size);
+  padding: 10px;
 }
 
 footer {
@@ -42,7 +43,7 @@ main {
 }
 
 main {
-  min-height: calc(100vh - var(--header-size) - var(--footer-size));
+  min-height: calc(100vh - var(--header-size) - var(--footer-size) - 20px);
   justify-content: center;
   flex-direction: column;
 }
@@ -172,4 +173,40 @@ textarea.editable {
 .save-button:active {
   background-color: #7cf778;
   transition: 10ms ease;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.subtitle {
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.github-button {
+  background-color: #24292e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.github-button:hover {
+  background-color: #0366d6;
 }
