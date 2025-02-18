@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./api/index.js",
     "seed-p": "node ./lib/seed-placeholders.js",
     "seed-t": "node ./lib/seed-teehee.js",
-    "dev": "SET DEBUG=server:* & nodemon ./bin/www"
+    "dev": "SET DEBUG=server:* & nodemon ./api/index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.7",
