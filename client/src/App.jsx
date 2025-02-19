@@ -1,8 +1,8 @@
-import Header from './components/Header';
-import EditJoke from './routes/EditJoke';
 import Home from './routes/Home';
 import Joke from './routes/Joke';
-import { Route, Routes } from 'react-router';
+import Header from './components/Header';
+import EditJoke from './routes/EditJoke';
+import {  Route, Routes, Navigate } from 'react-router';
 
 function App() {
   return (
@@ -10,10 +10,11 @@ function App() {
       <Header />
       <main>
         <section>
-          <Routes>
+          <Routes >
             <Route path='/' element={<Home />} />
             <Route path='/:id' element={<Joke />} />
             <Route path='/edit/:id' element={<EditJoke />} />
+            <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </section>
       </main>
